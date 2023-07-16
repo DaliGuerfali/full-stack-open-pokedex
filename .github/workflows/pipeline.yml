@@ -1,0 +1,19 @@
+name: deployment_pipeline
+
+on:
+    push:
+        branches:
+            - master
+
+jobs:
+    deployment_pipeline:
+        runs-on: ubuntu-20.04
+        steps:
+             - uses: action/checkout@v3
+             - uses: action/setup-node
+               with:
+                node-version: '16'
+             - name: installing dependencies
+               run: npm install
+             - name: Linting Check
+               run: npm run eslint
