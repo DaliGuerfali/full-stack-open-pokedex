@@ -1,0 +1,14 @@
+name: deploy_to_render
+
+on:
+    push:
+        branches:
+            - master
+
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - name: trigger deploy via web hook
+              run: curl https://api.render.com/deploy/srv-${{ secrets.RENDER_SERVICE_ID }}?key=${{ secrets.RENDER_API_KEY }}
