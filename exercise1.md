@@ -1,0 +1,7 @@
+For starters, we are using Java as the language for the project.
+Checkstyle is the most prominent linting tool in the Java ecosystem for the wide variety of plugins that it offers.
+As for the testing environment, we are using the JUnit framework for writing unit tests along with Mockito to provide us mocks.
+For the building process we will be relying on Apache Maven.
+Besides Jenkins and Github Actions, there are loads of Continuous Integration tools available in the market, such as BitBucket Pipelines which claims to be easy to set up and configure, AWS CodePipeline fully cloud and provided by the tech giant Amazon,
+CircleCi which is another tool that gracefully pairs with Github and optimized for quick builds and let's also mention Azure Pipelines which is a service provided by another tech giant none other than Microsoft.
+The Java setup we are using would be better hosted on a cloud-based solution, and this is due to the fact that we are still a small team of 6 developers. However as the project grows larger we might consider a different approach to Continuous Integration such as self-hosted solutions that would be more flexible to the demands of the project and especially more scalable if required.
