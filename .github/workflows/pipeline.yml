@@ -33,6 +33,22 @@ jobs:
              - if: ${{ github.event_name == 'push' }}
                name: deploy to render
                run: curl https://api.render.com/deploy/srv-${{ secrets.RENDER_SERVICE_ID }}?key=${{ secrets.RENDER_API_KEY }}
+             - name: Deploy Success
+               uses: rjstone/discord-webhook-notify@89b0bf43c2c8514f70d0dcba4a706b904e8a3112
+               if: success()
+               with:
+                 severity: info
+                 details: to https://pokedex-cz3m.onrender.com/
+                 text: A new version of Pokedex is deployed!
+                 webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+             - name: Build Failure
+               uses: rjstone/discord-webhook-notify@89b0bf43c2c8514f70d0dcba4a706b904e8a3112
+               if: failure()
+               with:
+                 severity: error
+                 text: Build Failure
+                 details: commit https://github.com/${{ github.repository }}/commit/${{ github.sha }} is broken
+                 webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
     tag_release:
       needs: [deployment_pipeline]
       if: github.event_name == 'push' && !contains(join(github.event.commits.*.message), '#skip')
