@@ -33,7 +33,7 @@ jobs:
              - if: ${{ github.event_name == 'push' }}
                name: deploy to render
                run: curl https://api.render.com/deploy/srv-${{ secrets.RENDER_SERVICE_ID }}?key=${{ secrets.RENDER_API_KEY }}
-             - if: ${{ github.event_name == 'push' }} && success()
+             - if: github.event_name == 'push' && success()
                name: Deploy Success
                uses: rjstone/discord-webhook-notify@89b0bf43c2c8514f70d0dcba4a706b904e8a3112
                with:
