@@ -35,7 +35,7 @@ jobs:
                run: curl https://api.render.com/deploy/srv-${{ secrets.RENDER_SERVICE_ID }}?key=${{ secrets.RENDER_API_KEY }}
              - name: Deploy Success
                uses: rjstone/discord-webhook-notify@89b0bf43c2c8514f70d0dcba4a706b904e8a3112
-               if: success()
+               if: success() && ${{ github.event_name == 'push' }}
                with:
                  severity: info
                  details: to https://pokedex-cz3m.onrender.com/
